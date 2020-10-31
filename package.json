@@ -1,0 +1,53 @@
+{
+  "name": "seed-carol-app",
+  "version": "0.0.1",
+  "scripts": {
+    "ng": "ng",
+    "update-model": "node ./node_modules/@carol/carol-sdk/src/update-model",
+    "start": "ng serve --port 3000",
+    "build": "ng build --prod --aot --source-map=false --optimization=true --buildOptimizer=true ",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^10.2.1",
+    "@angular/common": "^10.2.1",
+    "@angular/compiler": "^10.2.1",
+    "@angular/core": "^10.2.1",
+    "@angular/forms": "^10.2.1",
+    "@angular/platform-browser": "^10.2.1",
+    "@angular/platform-browser-dynamic": "^10.2.1",
+    "@angular/router": "^10.2.1",
+    "@carol/carol-sdk": "git+https://github.com/totvslabs/carol-sdk-dist.git",
+    "@po-ui/ng-components": "3.10.0",
+    "haversine-distance": "^1.2.1",
+    "moment": "^2.29.1",
+    "rxjs": "~6.5.4",
+    "tslib": "^2.0.0",
+    "xmlhttprequest": "^1.8.0",
+    "zone.js": "~0.10.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.1002.0",
+    "@angular/cli": "^10.2.0",
+    "@angular/compiler-cli": "^10.2.1",
+    "@angular/language-service": "^10.2.1",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "^2.0.8",
+    "@types/node": "~8.9.4",
+    "codelyzer": "^5.2.2",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~5.0.0",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~3.0.2",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
+    "protractor": "~7.0.0",
+    "ts-node": "^8.10.2",
+    "tslint": "~6.1.0",
+    "typescript": "~4.0.5"
+  }
+}

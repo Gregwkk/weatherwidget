@@ -1,0 +1,11 @@
+{
+  "connectorId": "79f9c7cb62d44afb90de44f165da6a02",
+  "organization": "meuportalcofco",
+  "environment": "meuportalcofco",
+  "/api/*": {
+      "target": "https://meuportalcofco.carol.ai",
+      "secure": true,
+      "logLevel": "debug",
+      "changeOrigin": true
+  }
+}

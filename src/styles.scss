@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+.blue {
+  color: #0C9ABE;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@import 'src/styles/weather-icons.min.scss'

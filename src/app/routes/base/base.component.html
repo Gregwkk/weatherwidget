@@ -1,0 +1,32 @@
+<po-widget class="m-b-1">
+    <div class="po-row">
+        <div class="po-xl-2 po-lg-2 po-md-4 po-sm-6">
+            <po-combo
+                (p-change)="onChangeUF($event)"
+                p-label="Estado"
+                [p-options]="filterOptions.uf"
+                p-placeholder="Selecione"
+                [(ngModel)]="filters.uf"
+                [p-disabled]="disableFilters"
+                p-clean="true"
+                p-icon="po-icon-world"
+                p-filter-mode="contains"
+            >
+            </po-combo>
+        </div>
+        <div class="po-xl-2 po-lg-2 po-md-4 po-sm-6">
+            <po-combo
+                (p-change)="onChangeFilters($event)"
+                [p-label]="cidadeLabel"
+                [p-options]="filters?.uf?.length ? cidadeOptions[filters?.uf] : {label:'Selecione', value:'Selecione'}"
+                p-placeholder="Selecione"
+                [(ngModel)]="filters.cidade"
+                [p-disabled]="disableFilters || !cidadeOptions[filters?.uf]"
+                p-clean="true"
+                p-icon="po-icon-company"
+                p-filter-mode="contains"
+            >
+            </po-combo>
+        </div>
+    </div>
+</po-widget>
