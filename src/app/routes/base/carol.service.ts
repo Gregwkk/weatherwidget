@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter } from 'rxjs/operators';
-import { FilterOptions } from './carol.interface';
+import { FilterOptions, WeatherItem } from './carol.interface';
 import haversine from 'haversine-distance';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,43 @@ export class CarolService {
     private http: HttpClient,
   ) { }
 
+  getWeatherData(params) {
+    const sortBy = 'dataprevisao';
+    return new Promise((resolvePromise) => {
+      this.http.post(`/api/v3/queries/named/weatherData?indexType=MASTER&sortBy=mdmGoldenFieldAndValues.${sortBy}&sortOrder=ASC`, params).subscribe(
+        (response: any) => {
+          resolvePromise({
+            weatherData: this.prepareWeatherData(response.hits.map(i => i.mdmGoldenFieldAndValues)),
+          });
+        }
+      );
+    });
+  }
+
+  private prepareWeatherData(mdmGoldenFieldAndValues) {
+
+
+
+    return mdmGoldenFieldAndValues.map((item): WeatherItem => ({
+      gonnaRain: item.precipitation ? 'wi wi-rain' : 'wi wi-day-sunny',
+      minimumtemperature: item.minimumtemperature,
+      maximumtemperature: item.maximumtemperature,
+      precipitation: item.precipitation,
+      dataprevisao: moment(item.dataprevisao).format('dddd, DD [de] MMMM [de] YYYY'),
+      diaDaSemana: moment(item.dataprevisao).format('dddd'),
+      dia: moment(item.dataprevisao).format('DD'),
+      mes: moment(item.dataprevisao).format('MMM'),
+      uf: item.uf,
+      cidade: item.cidade,
+      lat_lng: item.lat_lng
+
+    }));
+  }
+
   getFilterOptions(location, params) {
     return new Promise((res) => {
       let initialDistance = 9999999999;
-      let inititalFilter = { uf: 'BA', cidade: 'Barreiras' };
+      let inititalFilter = { uf: 'MT', cidade: 'Lucas do Rio Verde' };
       this.http.post('/api/v3/queries/named/weatherFilters?indexType=MASTER&pageSize=0&scrollable=false', params).subscribe(
         (response: any) => {
 

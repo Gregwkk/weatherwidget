@@ -8,4 +8,62 @@
   cursor: pointer;
 }
 
+.filters {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px 16px;
+  background: white;
+}
+
+.content {
+  padding-top: 86px;
+}
+
+.noContent {
+  padding-top: 86px;
+  display: flex;
+  justify-content: center;
+}
+
+app-loader {
+  display: flex;
+  justify-content: center;
+}
+
+.warm {
+  color: rgb(239, 100, 77);
+}
+
+.cold {
+  color: rgb(39, 167, 230);
+}
+
+.widget {
+  width: 430px;
+  height: 400px;
+}
+
+.card-values {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: Helvetica, sans-serif, Arial;
+  font-size: 30px;
+  margin-top: 18px;
+  h2 {
+    font-size: 30px;
+    padding-left: 4px;
+  }
+}
+
+.main-icon {
+  font-size: 36px;
+}
+
+.temp-card {
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
 @import 'src/styles/weather-icons.min.scss'
