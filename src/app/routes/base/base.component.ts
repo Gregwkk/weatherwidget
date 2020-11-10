@@ -23,12 +23,14 @@ export class BaseComponent implements OnInit {
   cidadeOptions: any;
   distance: number;
   cidadeLabel = 'Município';
+  userDeniedLocation = false;
 
   location: number[];
 
 
   ngOnInit() {
-    this.getUserLocation().then(location => {
+    this.getUserLocation().then((location: Number[]) => {
+      if (location[0] === 0 && location[1] === 0) { this.userDeniedLocation = true; } else { this.userDeniedLocation = false; }
       this.fetchFilterOptions(location);
     });
   }
@@ -60,11 +62,17 @@ export class BaseComponent implements OnInit {
 
   onChangeFilters(event?) {
     const params = this.prepareFilters();
+    // Pega a distancia da cidade para mostrar no label do filtro
     if (this.filters.cidade) {
       this.distance = this.cidadeOptions[this.filters?.uf][this.cidadeOptions[this.filters?.uf].findIndex(i => i.label === this.filters.cidade)].distance;
     } else { this.distance = 0; }
-    this.cidadeLabel = `Município  -  ${this.utilsService.formatMetricDisplay(this.distance)}Km`;
-    this.fetchWeatherData();
+    if (!this.userDeniedLocation) {
+      this.cidadeLabel = `Município  -  ${this.utilsService.formatMetricDisplay(this.distance)}Km`;
+    }
+    // só chama a query se tiver cidade selecionada
+    if (this.filters?.cidade?.length && !this.refreshingData) {
+      this.fetchWeatherData();
+    }
   }
 
   onChangeUF(event?) {

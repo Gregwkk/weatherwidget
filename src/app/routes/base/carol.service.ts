@@ -15,8 +15,9 @@ export class CarolService {
 
   getWeatherData(params) {
     const sortBy = 'dataprevisao';
+    const pageSize = 30;
     return new Promise((resolvePromise) => {
-      this.http.post(`/api/v3/queries/named/weatherData?indexType=MASTER&sortBy=mdmGoldenFieldAndValues.${sortBy}&sortOrder=ASC`, params).subscribe(
+      this.http.post(`/api/v3/queries/named/weatherData?indexType=MASTER&sortBy=mdmGoldenFieldAndValues.${sortBy}&sortOrder=ASC&pageSize=${pageSize}`, params).subscribe(
         (response: any) => {
           resolvePromise({
             weatherData: this.prepareWeatherData(response.hits.map(i => i.mdmGoldenFieldAndValues)),

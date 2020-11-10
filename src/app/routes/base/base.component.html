@@ -29,54 +29,66 @@
             </po-combo>
         </div>
     </div>
-    <div class="noContent" *ngIf="!(filters?.uf?.length)">
-      <strong>Selecione o Estado</strong>
-    </div>
-    <div class="noContent" *ngIf="filters?.uf?.length && !(filters?.cidade?.length)">
-      <strong>Selecione o Município</strong>
-    </div>
-    <div class="content" *ngIf="filters?.uf?.length && filters?.cidade?.length">
-        <app-loader *ngIf="refreshingData"></app-loader>
-        <div
-            *ngIf="!refreshingData"
-            style="display: flex; justify-content: flex-start;"
-        >
-            <div *ngFor="let item of weatherData">
-                <po-widget
-                    class="po-xl-3"
-                    style="height: 280px;"
-                >
-                    <div class="temp-card">
-                        <div style="display: flex; justify-content: center; align-items: baseline; width: 108px;">
-                            <div style="display: flex; justify-content: flex-start; align-items: baseline;">
-                                <h1>{{item.dia}}</h1>
-                                <h2>/{{item.mes}}</h2>
+
+    <div style="padding-top: 90px;">
+      <app-loader *ngIf="refreshingData"></app-loader>
+        <div class="po-row noContent" *ngIf="!refreshingData">
+            <strong *ngIf="!(filters?.uf?.length)">Selecione o Estado</strong>
+            <strong *ngIf="filters?.uf?.length && !(filters?.cidade?.length)">Selecione o Município</strong>
+            <po-button
+                *ngIf="userDeniedLocation"
+                class="po-row center p-a-1"
+                (p-click)="ngOnInit()"
+                p-label="Habilite o acesso à sua localização no seu navegador"
+                p-small="true"
+                p-icon="po-icon po-icon-pin"
+                p-tooltip="Para acharmos sua localização automaticamente"
+            ></po-button>
+        </div>
+        <div *ngIf="filters?.uf?.length && filters?.cidade?.length">
+            <div
+                *ngIf="!refreshingData"
+                style="display: flex; justify-content: flex-start;"
+            >
+                <div *ngFor="let item of weatherData">
+                    <po-widget
+                        class="po-xl-12"
+                        style="height: 280px;"
+                    >
+                        <div class="temp-card">
+                            <div style="display: flex; justify-content: center; align-items: baseline; width: 108px;">
+                                <div style="display: flex; justify-content: flex-start; align-items: baseline;">
+                                    <h1>{{item.dia}}</h1>
+                                    <h2>/{{item.mes}}</h2>
+                                </div>
+                            </div>
+                            <h3 style="display: flex; justify-content: center; align-items: baseline;">{{item.diaDaSemana}}</h3>
+                            <div class="po-row card-values main-icon">
+                                <i
+                                    class='wi'
+                                    [ngClass]="{
+                        'wi-day-sunny': item.precipitation === 0,
+                        'wi-day-showers': item.precipitation > 0 && item.precipitation < 2.5,
+                        'wi-rain': item.precipitation >= 2.5 && item.precipitation < 10,
+                        'wi-thunderstorm': item.precipitation >= 10 }"
+                                ></i>
+                            </div>
+                            <div class="po-row card-values warm">
+                                <i class="wi wi-thermometer"></i>
+                                <h2>{{item.maximumtemperature}}°C</h2>
+                            </div>
+                            <div class="po-row card-values cold">
+                                <i class="wi wi-thermometer"></i>
+                                <h2>{{item.minimumtemperature}}°C</h2>
+                            </div>
+                            <div class="po-row card-values precipitation">
+                                <i class="wi wi-raindrop"></i>
+                                <h2>{{item.precipitation}}</h2>
+                                <h5>mm</h5>
                             </div>
                         </div>
-                        <h3 style="display: flex; justify-content: center; align-items: baseline;">{{item.diaDaSemana}}</h3>
-                        <div class="po-row card-values main-icon">
-                            <i
-                                class='wi'
-                                [ngClass]="{
-                        'wi-day-sunny': item.precipitation === 0,
-                        'wi-day-rain': item.precipitation === 1,
-                        'wi-rain': item.precipitation > 1 }"
-                            ></i>
-                        </div>
-                        <div class="po-row card-values warm">
-                            <i class="wi wi-thermometer"></i>
-                            <h2>{{item.maximumtemperature}}°C</h2>
-                        </div>
-                        <div class="po-row card-values cold">
-                            <i class="wi wi-thermometer"></i>
-                            <h2>{{item.minimumtemperature}}°C</h2>
-                        </div>
-                        <div class="po-row card-values">
-                            <i class="wi wi-raindrop"></i>
-                            <h2>{{item.precipitation}}mm</h2>
-                        </div>
-                    </div>
-                </po-widget>
+                    </po-widget>
+                </div>
             </div>
         </div>
     </div>
