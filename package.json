@@ -22,6 +22,7 @@
     "@angular/router": "^10.2.1",
     "@carol/carol-sdk": "git+https://github.com/totvslabs/carol-sdk-dist.git",
     "@po-ui/ng-components": "3.10.0",
+    "@totvs/po-theme": "^3.12.0",
     "haversine-distance": "^1.2.1",
     "moment": "^2.29.1",
     "rxjs": "~6.5.4",

@@ -16,7 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import moment from 'moment';
 
 registerLocaleData(ptBr);
-moment.locale('pt-br')
+moment.locale('pt-br');
 
 @NgModule({
   declarations: [

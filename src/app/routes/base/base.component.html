@@ -1,6 +1,6 @@
 <po-widget>
     <div class="po-row filters">
-        <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6">
+        <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4">
             <po-combo
                 (p-change)="onChangeUF($event)"
                 p-label="Estado"
@@ -14,7 +14,7 @@
             >
             </po-combo>
         </div>
-        <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6">
+        <div class="po-xl-8 po-lg-8 po-md-8 po-sm-8">
             <po-combo
                 (p-change)="onChangeFilters($event)"
                 [p-label]="cidadeLabel"
@@ -31,11 +31,14 @@
     </div>
 
     <div style="padding-top: 90px;">
-      <app-loader *ngIf="refreshingData"></app-loader>
-        <div class="po-row noContent" *ngIf="!refreshingData">
+        <app-loader *ngIf="refreshingData"></app-loader>
+        <div
+            class="po-row noContent"
+            *ngIf="!refreshingData"
+        >
             <strong *ngIf="!(filters?.uf?.length)">Selecione o Estado</strong>
             <strong *ngIf="filters?.uf?.length && !(filters?.cidade?.length)">Selecione o Município</strong>
-            <po-button
+            <!-- <po-button
                 *ngIf="userDeniedLocation"
                 class="po-row center p-a-1"
                 (p-click)="ngOnInit()"
@@ -43,7 +46,7 @@
                 p-small="true"
                 p-icon="po-icon po-icon-pin"
                 p-tooltip="Para acharmos sua localização automaticamente"
-            ></po-button>
+            ></po-button> -->
         </div>
         <div *ngIf="filters?.uf?.length && filters?.cidade?.length">
             <div
@@ -56,7 +59,7 @@
                         style="height: 280px;"
                     >
                         <div class="temp-card">
-                            <div style="display: flex; justify-content: center; align-items: baseline; width: 108px;">
+                            <div style="display: flex; justify-content: center; align-items: baseline; width: 100px;">
                                 <div style="display: flex; justify-content: flex-start; align-items: baseline;">
                                     <h1>{{item.dia}}</h1>
                                     <h2>/{{item.mes}}</h2>
@@ -67,10 +70,10 @@
                                 <i
                                     class='wi'
                                     [ngClass]="{
-                        'wi-day-sunny': item.precipitation === 0,
-                        'wi-day-showers': item.precipitation > 0 && item.precipitation < 2.5,
-                        'wi-rain': item.precipitation >= 2.5 && item.precipitation < 10,
-                        'wi-thunderstorm': item.precipitation >= 10 }"
+                                    'wi-day-sunny': item.precipitation === 0,
+                                    'wi-day-showers': item.precipitation > 0 && item.precipitation < 2.5,
+                                    'wi-rain': item.precipitation >= 2.5 && item.precipitation < 10,
+                                    'wi-thunderstorm': item.precipitation >= 10 }"
                                 ></i>
                             </div>
                             <div class="po-row card-values warm">
