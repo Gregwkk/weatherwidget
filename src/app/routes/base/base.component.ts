@@ -32,6 +32,7 @@ export class BaseComponent implements OnInit {
     this.getUserLocation().then((location: Number[]) => {
       if (location[0] === 0 && location[1] === 0) { this.userDeniedLocation = true; } else { this.userDeniedLocation = false; }
       this.fetchFilterOptions(location);
+      console.log(location)
     });
   }
 
@@ -41,6 +42,8 @@ export class BaseComponent implements OnInit {
       this.filterOptions = filterOptions.filterOptions;
       this.cidadeOptions = filterOptions.cidadeOptions;
       this.filters = filterOptions.inititalFilter;
+      console.log(filterOptions);
+
       this.fetchWeatherData();
       this.disableFilters = false;
     });
@@ -49,10 +52,11 @@ export class BaseComponent implements OnInit {
   private fetchWeatherData() {
     this.refreshingData = true;
     const params = this.prepareFilters();
+    console.log('params',params)
     this.carolService.getWeatherData(params).then(
       ({ weatherData }) => {
         this.weatherData = weatherData;
-        // console.log(this.weatherData);
+        console.log(this.weatherData);
         this.refreshingData = false;
       }
     );

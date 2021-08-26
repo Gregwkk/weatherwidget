@@ -145,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "seed-carol-app"
+  "defaultProject": "seed-carol-app",
+  "cli": {
+    "analytics": "291f70fc-0be3-44e9-9690-00c1f60e84a8"
+  }
 }

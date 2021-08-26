@@ -85,6 +85,8 @@ export class CarolService {
             }));
           });
 
+          console.log('cidade',cidadeOptions)
+
           function getDistance(estado, cidade) {
             const lat_lng: string = cidade.aggregations.lat_lng.buckets[Object.keys(cidade.aggregations.lat_lng.buckets)[0]].key;
             const geoPoint = { lat: Number(lat_lng.split(',')[0]), lng: Number(lat_lng.split(',')[1]) };
@@ -103,6 +105,9 @@ export class CarolService {
 
 
           res({ filterOptions: filterOptions, cidadeOptions: cidadeOptions, inititalFilter: inititalFilter });
+          console.log('initial',inititalFilter)
+          console.log('Filter Optons',filterOptions)
+
         }
       );
     });

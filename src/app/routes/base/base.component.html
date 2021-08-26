@@ -38,7 +38,7 @@
         >
             <strong *ngIf="!(filters?.uf?.length)">Selecione o Estado</strong>
             <strong *ngIf="filters?.uf?.length && !(filters?.cidade?.length)">Selecione o Município</strong>
-            <!-- <po-button
+            <po-button
                 *ngIf="userDeniedLocation"
                 class="po-row center p-a-1"
                 (p-click)="ngOnInit()"
@@ -46,7 +46,7 @@
                 p-small="true"
                 p-icon="po-icon po-icon-pin"
                 p-tooltip="Para acharmos sua localização automaticamente"
-            ></po-button> -->
+            ></po-button>
         </div>
         <div *ngIf="filters?.uf?.length && filters?.cidade?.length">
             <div

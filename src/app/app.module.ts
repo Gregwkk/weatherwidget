@@ -15,6 +15,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { registerLocaleData } from '@angular/common';
 import moment from 'moment';
 
+
 registerLocaleData(ptBr);
 moment.locale('pt-br');
 
